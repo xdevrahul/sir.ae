@@ -13,6 +13,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Scroll detect
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -20,10 +21,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Page change pe menu band
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
+  // Escape pe menu band
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -33,10 +36,18 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
-  // 👇 two visual modes
+  // Lock body scroll jab mobile menu open ho
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
+  // Home pe top par transparent; warna glass-nav solid
   const isTransparent = isHome && !scrolled && !menuOpen;
-  // transparent = white text on dark hero
-  // solid      = cream bg + dark text
 
   const isActive = (href: string) => {
     if (href.includes("#")) return false;
@@ -46,12 +57,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`inset-x-0 top-0 z-50 text-white transition-all duration-300 ${
         isHome ? "fixed" : "sticky"
       } ${
         isTransparent
-          ? "bg-transparent text-white"
-          : "border-b border-[#263d50]/10 bg-[#f5f5f3]/95 text-[#20282f] shadow-[0_1px_0_rgba(38,61,80,0.08)] backdrop-blur"
+          ? "bg-transparent"
+          : "glass-nav shadow-[0_1px_0_rgba(255,255,255,0.06)]"
       }`}
     >
       <div className="mx-auto flex h-[76px] max-w-[1800px] items-center justify-between px-6 md:h-[88px] md:px-10 xl:px-20">
@@ -62,20 +73,9 @@ export default function Navbar() {
           aria-label="SIR Properties home"
         >
           <span className="font-serif text-[32px] font-medium leading-none tracking-[0.14em] md:text-[36px]">
-            SIR
-            <span
-              className={
-                isTransparent ? "text-[#a8c0d8]" : "text-[#8295a5]"
-              }
-            >
-              .
-            </span>
+            SIR<span className="text-gradient-purple">.</span>
           </span>
-          <span
-            className={`mt-1.5 text-xs tracking-[0.3em] ${
-              isTransparent ? "text-white/70" : "text-[#8295a5]"
-            }`}
-          >
+          <span className="mt-1.5 text-xs tracking-[0.3em] text-white/60">
             Properties
           </span>
         </Link>
@@ -87,20 +87,15 @@ export default function Navbar() {
         >
           {NAV_LINKS.map((link) => {
             const active = isActive(link.href);
-            const underline = isTransparent ? "after:bg-[#a8c0d8]" : "after:bg-[#263d50]";
             return (
               <Link
                 key={link.label}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative py-2 text-sm transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:transition-all after:duration-300 ${underline} ${
-                  isTransparent
-                    ? active
-                      ? "text-white after:w-full"
-                      : "text-white/80 hover:text-white after:w-0 hover:after:w-full"
-                    : active
-                    ? "text-[#20282f] after:w-full"
-                    : "text-[#4d5a63] hover:text-[#263d50] after:w-0 hover:after:w-full"
+                className={`relative py-2 text-sm transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-gradient-to-r after:from-lilac after:to-glow after:transition-all after:duration-300 ${
+                  active
+                    ? "text-white after:w-full"
+                    : "text-white/75 after:w-0 hover:text-white hover:after:w-full"
                 }`}
               >
                 {link.label}
@@ -109,23 +104,13 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* PHONE CTA */}
+        {/* PHONE CTA (desktop) */}
         <a
           href={SITE.phoneHref}
-          className={`group hidden h-12 items-center gap-4 rounded-full border pl-6 pr-1.5 text-sm transition-colors duration-300 lg:flex ${
-            isTransparent
-              ? "border-white/40 hover:border-white hover:bg-white hover:text-[#263d50]"
-              : "border-[#263d50]/25 hover:border-[#263d50] hover:bg-[#263d50] hover:text-white"
-          }`}
+          className="group hidden h-12 items-center gap-4 rounded-full border border-white/15 bg-white/5 pl-6 pr-1.5 text-sm text-white/90 backdrop-blur-xl transition-all duration-300 hover:border-lilac/40 hover:bg-white/10 lg:flex"
         >
           Call us
-          <span
-            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-              isTransparent
-                ? "bg-white/15 group-hover:bg-[#263d50] group-hover:text-white"
-                : "bg-[#263d50]/10 text-[#263d50] group-hover:bg-white group-hover:text-[#263d50]"
-            }`}
-          >
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-glow text-white shadow-[0_0_20px_-5px_rgba(168,85,247,0.8)] transition-transform group-hover:scale-105">
             <Phone size={15} />
           </span>
         </a>
@@ -137,11 +122,7 @@ export default function Navbar() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className={`flex h-11 w-11 items-center justify-center border transition lg:hidden ${
-            isTransparent
-              ? "border-white/30 hover:bg-white hover:text-[#263d50]"
-              : "border-[#263d50]/25 hover:bg-[#263d50] hover:text-white"
-          }`}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-xl transition hover:border-lilac/40 hover:bg-white/10 lg:hidden"
         >
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
@@ -150,32 +131,25 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       <div
         id="mobile-menu"
-        className={`absolute left-0 top-full w-full border-t transition-all duration-300 lg:hidden ${
-          isTransparent
-            ? "border-white/10 bg-[#263d50] text-white"
-            : "border-[#263d50]/10 bg-[#f5f5f3] text-[#20282f]"
-        } ${
+        className={`absolute left-0 top-full w-full overflow-hidden border-t border-white/10 bg-ink-deep/95 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
           menuOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-3 opacity-0"
+            ? "visible max-h-[80vh] translate-y-0 opacity-100"
+            : "invisible max-h-0 -translate-y-3 opacity-0"
         }`}
       >
-        <nav className="flex flex-col px-6 py-4" aria-label="Mobile">
+        <nav
+          className="flex max-h-[80vh] flex-col overflow-y-auto px-6 py-4"
+          aria-label="Mobile"
+        >
           {NAV_LINKS.map((link, index) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`py-4 text-base transition ${
-                isTransparent
-                  ? "text-white/85 hover:text-[#a8c0d8]"
-                  : "text-[#20282f]/85 hover:text-[#263d50]"
-              } ${
+              className={`py-4 text-base text-white/85 transition hover:text-lilac ${
                 index !== NAV_LINKS.length - 1
-                  ? isTransparent
-                    ? "border-b border-white/10"
-                    : "border-b border-[#263d50]/10"
+                  ? "border-b border-white/10"
                   : ""
               }`}
             >
@@ -185,7 +159,7 @@ export default function Navbar() {
 
           <a
             href={SITE.phoneHref}
-            className="mt-5 flex items-center justify-center gap-3 bg-[#263d50] px-5 py-4 text-sm font-medium text-white transition hover:bg-[#1e3346]"
+            className="mt-5 flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-brand-500 to-glow px-5 py-4 text-sm font-medium text-white shadow-glow-purple"
           >
             <Phone size={16} />
             Call our team
