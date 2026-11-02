@@ -5,13 +5,13 @@ import CurrentYear from "@/components/CurrentYear";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a2a38] px-6 pt-20 pb-8 text-white md:px-12 lg:px-20">
+    <footer className="bg-[#1e3346] px-6 pt-20 pb-8 text-white md:px-12 lg:px-20">
       <div className="mx-auto max-w-[1500px]">
         {/* TOP ROW */}
         <div className="flex flex-col gap-12 pb-16 md:flex-row md:items-start md:justify-between">
           {/* BRAND */}
           <div className="max-w-sm">
-            <span className="text-[10px] tracking-[3px] text-[#8295a5]">
+            <span className="text-[10px] tracking-[3px] text-[#a8c0d8]/70">
               DUBAI · UAE
             </span>
 
@@ -19,14 +19,14 @@ export default function Footer() {
               SIR<span className="text-[#a8c0d8]">.</span>
             </p>
 
-            <p className="mt-4 text-sm leading-7 text-white/60">
+            <p className="mt-4 text-sm leading-7 text-white/55">
               Luxury real estate in Dubai.
             </p>
           </div>
 
           {/* NAVIGATION */}
           <nav aria-label="Footer" className="flex flex-col gap-3">
-            <span className="mb-2 text-[10px] tracking-[3px] text-[#8295a5]">
+            <span className="mb-2 text-[10px] tracking-[3px] text-[#a8c0d8]/70">
               NAVIGATE
             </span>
 
@@ -34,7 +34,7 @@ export default function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="w-fit text-sm text-white/70 transition-colors hover:text-[#a8c0d8]"
+                className="w-fit text-sm text-white/65 transition-colors hover:text-[#a8c0d8]"
               >
                 {link.label}
               </Link>
@@ -43,13 +43,13 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div className="flex flex-col gap-3">
-            <span className="mb-2 text-[10px] tracking-[3px] text-[#8295a5]">
+            <span className="mb-2 text-[10px] tracking-[3px] text-[#a8c0d8]/70">
               GET IN TOUCH
             </span>
 
             <a
               href={SITE.phoneHref}
-              className="group flex w-fit items-center gap-3 text-sm text-white/70 transition-colors hover:text-[#a8c0d8]"
+              className="group flex w-fit items-center gap-3 text-sm text-white/65 transition-colors hover:text-[#a8c0d8]"
             >
               <Phone size={15} />
               {SITE.phoneDisplay}
@@ -57,14 +57,14 @@ export default function Footer() {
 
             <a
               href={`mailto:${SITE.email}`}
-              className="w-fit text-sm text-white/70 underline-offset-4 transition-colors hover:text-[#a8c0d8] hover:underline"
+              className="w-fit text-sm text-white/65 underline-offset-4 transition-colors hover:text-[#a8c0d8] hover:underline"
             >
               {SITE.email}
             </a>
 
             <Link
               href="/#contact"
-              className="group mt-3 inline-flex w-fit items-center gap-4 border border-white/40 px-6 py-4 text-[10px] tracking-[2px] transition-colors hover:bg-white hover:text-[#1a2a38]"
+              className="group mt-3 inline-flex w-fit items-center gap-4 border border-white/25 bg-white/5 px-6 py-4 text-[10px] tracking-[2px] transition-colors hover:border-white hover:bg-white hover:text-[#1e3346]"
             >
               SEND AN ENQUIRY
               <span className="transition-transform group-hover:translate-x-1">
@@ -75,11 +75,10 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 text-[10px] tracking-[2px] text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 border-t border-white/10 pt-6 text-[10px] tracking-[2px] text-white/40 md:flex-row md:items-center md:justify-between">
           <p>
             &copy; <CurrentYear /> {SITE.name}. ALL RIGHTS RESERVED.
           </p>
-
           <p>{SITE.city.toUpperCase()}</p>
         </div>
       </div>
