@@ -5,10 +5,6 @@ import { useMemo, useState } from "react";
 import { ArrowUpRight, Search, BedDouble, MapPin } from "lucide-react";
 import { projects } from "@/data/projects";
 
-// 👇 apni image yahan lagao (local: "/images/projects-hero.jpg")
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2000&q=80";
-
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
 
@@ -30,65 +26,78 @@ export default function ProjectsPage() {
   }, [search]);
 
   return (
-    <main className="min-h-screen bg-[#f5f5f3] text-[#20282f]">
-      {/* PAGE HERO WITH IMAGE */}
-      <section className="relative isolate overflow-hidden bg-[#263d50] px-6 py-28 text-white md:px-12 md:py-36 lg:px-20">
-        {/* background image */}
-        <img
-          src={HERO_IMAGE}
-          alt="Dubai skyline"
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
+    <main className="min-h-screen bg-ink-deep text-white">
+      {/* ============ PAGE HERO (NO IMAGE) ============ */}
+      <section className="relative isolate overflow-hidden bg-ink-deep px-6 py-28 md:px-12 md:py-32 lg:px-20">
+        {/* ambient purple glows */}
+        <div className="glow-blob -top-40 right-1/4 h-[500px] w-[500px]" />
+        <div className="glow-blob-accent -bottom-40 left-1/4 h-[400px] w-[400px]" />
+
+        {/* subtle grid texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+          }}
         />
-        {/* gradient overlays */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0f1e2b]/95 via-[#172d40]/80 to-[#263d50]/40" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0f1e2b]/80 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-[1500px]">
-          <div className="mb-8 flex items-center gap-3 text-[10px] tracking-[3px] text-[#c2d2df]">
-            <span className="h-px w-8 bg-[#c2d2df]" />
+          <span className="eyebrow-badge mb-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-glow shadow-[0_0_10px_#a855f7]" />
             SIR PROPERTIES · DUBAI
-          </div>
+          </span>
 
           <h1 className="max-w-5xl font-serif text-6xl font-light leading-[1.05] tracking-tight md:text-8xl lg:text-[110px]">
             Discover
             <br />
-            <span className="italic text-[#a8c0d8]">exceptional</span>{" "}
+            <span className="text-gradient-purple italic">exceptional</span>{" "}
             living.
           </h1>
 
-          <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/20 pt-7 md:flex-row md:items-end">
-            <p className="max-w-lg text-sm leading-7 text-white/75">
-              Explore an exclusive collection of luxury residences,
-              signature developments and exceptional homes across Dubai.
+          <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/10 pt-7 md:flex-row md:items-end">
+            <p className="max-w-lg text-sm leading-7 text-white/60">
+              Explore an exclusive collection of luxury residences, signature
+              developments and exceptional homes across Dubai.
             </p>
 
-            <span className="text-[10px] tracking-[3px] text-white/60">
-              OUR PROPERTY COLLECTION
-            </span>
+            <div className="flex flex-wrap items-center gap-6">
+              <span className="text-[10px] tracking-[3px] text-white/40">
+                OUR PROPERTY COLLECTION
+              </span>
+              <span className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] tracking-[2px] text-white/70 backdrop-blur-xl">
+                <span className="h-1.5 w-1.5 rounded-full bg-glow shadow-[0_0_8px_#a855f7]" />
+                {projects.length} LISTED
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* PROJECT LISTING */}
-      <section className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
+      {/* ============ PROJECT LISTING ============ */}
+      <section className="relative mx-auto max-w-[1600px] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
         {/* SECTION HEADING */}
-        <div className="flex flex-col justify-between gap-8 border-b border-[#d8dcdf] pb-10 md:flex-row md:items-end">
+        <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
           <div>
-            <span className="text-[10px] tracking-[3px] text-[#8295a5]">
-              CURATED DEVELOPMENTS
-            </span>
+            <span className="eyebrow">CURATED DEVELOPMENTS</span>
 
             <h2 className="mt-4 font-serif text-4xl font-light md:text-6xl">
               Explore our projects
             </h2>
 
-            <p className="mt-4 text-sm text-[#7c858c]">
+            <p className="mt-4 text-sm text-white/50">
               Discover residences selected for exceptional living.
             </p>
           </div>
 
-          <div className="flex items-baseline gap-2 text-sm text-[#7c858c]">
-            <span className="font-serif text-4xl text-[#20282f]">
+          <div className="flex items-baseline gap-2 text-sm text-white/50">
+            <span className="font-serif text-4xl text-white">
               {filteredProjects.length.toString().padStart(2, "0")}
             </span>
             <span className="text-[10px] tracking-[2px]">PROJECTS</span>
@@ -97,19 +106,19 @@ export default function ProjectsPage() {
 
         {/* SEARCH */}
         <div className="my-10 max-w-xl">
-          <div className="flex items-center gap-3 rounded-full border border-[#d8dcdf] bg-white px-5 py-3.5 shadow-sm transition focus-within:border-[#263d50] focus-within:ring-2 focus-within:ring-[#263d50]/10">
-            <Search size={18} className="shrink-0 text-[#8295a5]" />
+          <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3.5 backdrop-blur-xl transition focus-within:border-lilac/50 focus-within:bg-white/10 focus-within:shadow-[0_0_0_3px_rgba(168,85,247,0.12)]">
+            <Search size={18} className="shrink-0 text-lilac" />
             <input
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by project, location or developer..."
-              className="w-full bg-transparent text-sm text-[#20282f] outline-none placeholder:text-[#92999e]"
+              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/35"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="shrink-0 text-[10px] tracking-[1.5px] text-[#8295a5] transition hover:text-[#263d50]"
+                className="shrink-0 text-[10px] tracking-[1.5px] text-lilac/80 transition hover:text-lilac"
               >
                 CLEAR
               </button>
@@ -126,8 +135,8 @@ export default function ProjectsPage() {
                 href={`/projects/${project.slug}`}
                 className="group block"
               >
-                {/* IMAGE */}
-                <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#dce2e6]">
+                {/* IMAGE CARD */}
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-ink-card">
                   <img
                     src={project.image}
                     alt={project.name}
@@ -135,15 +144,15 @@ export default function ProjectsPage() {
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/95 via-ink-deep/20 to-transparent" />
 
-                  <span className="absolute left-5 top-5 bg-white/95 px-4 py-2 text-[9px] tracking-[2px] text-[#263d50] backdrop-blur">
-                    FEATURED DEVELOPMENT
+                  <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[9px] tracking-[2px] text-white backdrop-blur-xl">
+                    FEATURED
                   </span>
 
                   <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3 text-white">
                     <div className="min-w-0">
-                      <p className="flex items-center gap-1.5 text-[9px] tracking-[2px] text-white/80">
+                      <p className="flex items-center gap-1.5 text-[9px] tracking-[2px] text-lilac/90">
                         <MapPin size={11} />
                         <span className="truncate">{project.location}</span>
                       </p>
@@ -152,42 +161,44 @@ export default function ProjectsPage() {
                       </p>
                     </div>
 
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/70 transition-all duration-300 group-hover:bg-white group-hover:text-[#263d50]">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-xl transition-all duration-300 group-hover:border-lilac/60 group-hover:bg-gradient-to-br group-hover:from-brand-500 group-hover:to-glow group-hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.8)]">
                       <ArrowUpRight size={19} />
                     </span>
                   </div>
                 </div>
 
-                {/* PROJECT INFORMATION */}
-                <div className="border-b border-[#d8dcdf] py-6 transition-colors group-hover:border-[#263d50]/40">
+                {/* PROJECT INFO — glass card */}
+                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 group-hover:border-lilac/30 group-hover:bg-white/10">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="truncate text-[10px] tracking-[2px] text-[#8295a5]">
+                    <span className="truncate text-[10px] tracking-[2px] text-lilac/80">
                       {project.developer}
                     </span>
-                    <span className="shrink-0 text-[10px] text-[#7c858c]">
+                    <span className="shrink-0 text-[10px] text-white/40">
                       {project.handover}
                     </span>
                   </div>
 
                   <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
                     <div>
-                      <p className="text-[9px] tracking-[2px] text-[#92999e]">
+                      <p className="text-[9px] tracking-[2px] text-white/40">
                         STARTING FROM
                       </p>
-                      <p className="mt-1 font-serif text-2xl">
+                      <p className="mt-1 font-serif text-2xl text-white">
                         AED {project.price.replace(/^AED\s*/i, "")}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2 text-[10px] text-[#7c858c]">
-                      <BedDouble size={15} />
+                    <div className="flex items-center gap-2 text-[10px] text-white/60">
+                      <BedDouble size={15} className="text-lilac/80" />
                       {project.bedrooms} Bedrooms
                     </div>
                   </div>
 
-                  <div className="mt-5 flex items-center justify-between gap-3 text-[10px] tracking-[1.5px]">
-                    <span className="text-[#7c858c]">{project.propertyType}</span>
-                    <span className="flex shrink-0 items-center gap-2 text-[#263d50] transition-all group-hover:gap-4">
+                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-[10px] tracking-[1.5px]">
+                    <span className="text-white/50">
+                      {project.propertyType}
+                    </span>
+                    <span className="flex shrink-0 items-center gap-2 text-lilac transition-all group-hover:gap-4 group-hover:text-glow">
                       VIEW DETAILS
                       <ArrowUpRight size={15} />
                     </span>
@@ -198,13 +209,13 @@ export default function ProjectsPage() {
           </div>
         ) : (
           <div className="py-24 text-center">
-            <h3 className="font-serif text-3xl">No projects found</h3>
-            <p className="mt-3 text-sm text-[#7c858c]">
+            <h3 className="font-serif text-3xl text-white">No projects found</h3>
+            <p className="mt-3 text-sm text-white/50">
               Try searching with another project name or location.
             </p>
             <button
               onClick={() => setSearch("")}
-              className="mt-6 border border-[#263d50] px-6 py-3 text-[10px] tracking-[2px] transition hover:bg-[#263d50] hover:text-white"
+              className="btn-secondary mt-6"
             >
               CLEAR SEARCH
             </button>
@@ -212,29 +223,27 @@ export default function ProjectsPage() {
         )}
       </section>
 
-      {/* BOTTOM CTA */}
-      <section className="bg-[#e8edf0] px-6 py-20 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-[1500px] flex-col justify-between gap-8 md:flex-row md:items-end">
+      {/* ============ BOTTOM CTA ============ */}
+      <section className="relative overflow-hidden bg-ink-soft px-6 py-20 md:px-12 lg:px-20">
+        <div className="glow-blob -bottom-40 left-1/4 h-[500px] w-[500px]" />
+        <div className="glow-blob-accent -top-40 right-1/4 h-[400px] w-[400px]" />
+
+        <div className="relative mx-auto flex max-w-[1500px] flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <span className="text-[10px] tracking-[3px] text-[#8295a5]">
-              YOUR NEXT ADDRESS
-            </span>
+            <span className="eyebrow">YOUR NEXT ADDRESS</span>
 
             <h2 className="mt-5 font-serif text-4xl font-light md:text-6xl">
               Let&apos;s find your
               <br />
-              <span className="italic text-[#8295a5]">perfect place.</span>
+              <span className="text-gradient-purple italic">perfect place.</span>
             </h2>
           </div>
 
-          <Link
-            href="/#contact"
-            className="group inline-flex w-fit items-center gap-8 border border-[#263d50] px-7 py-5 text-[10px] tracking-[2px] transition hover:bg-[#263d50] hover:text-white"
-          >
+          <Link href="/#contact" className="btn-primary group w-fit">
             CONTACT OUR TEAM
             <ArrowUpRight
               size={17}
-              className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             />
           </Link>
         </div>
