@@ -2,45 +2,30 @@
 
 import { useEffect, useState } from "react";
 
-type Props = {
-  image: string;
-};
-
-export default function HeroBackdrop({ image }: Props) {
+export default function HeroBackdrop({ image }: { image: string }) {
   const [revealed, setRevealed] = useState(false);
 
-  // Load hote hi andhera parda dheere se uthta hai, photo saamne aati hai.
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setRevealed(true);
-      return;
-    }
+    if (reduce) return setRevealed(true);
     const id = requestAnimationFrame(() => setRevealed(true));
     return () => cancelAnimationFrame(id);
   }, []);
 
   return (
     <>
-      {/* PHOTO: fixed attachment taaki SIR ke letters ke andar ki photo isi se match kare */}
-      <div
+      <img
+        src={image}
+        alt=""
         aria-hidden="true"
-        className="absolute inset-0 -z-20"
-        style={{
-          backgroundImage: `url("${image}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
-
-      {/* VEIL: photo ko dim karta hai. Letters iske upar hain, isliye wahi photo full brightness mein dikhti hai */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-ink-deep"
+        className="absolute inset-0 -z-10 bg-[#263d50]"
         style={{
-          opacity: revealed ? 0.72 : 1,
-          transition: "opacity 2400ms cubic-bezier(0.2, 0.7, 0.2, 1)",
+          opacity: revealed ? 0.7 : 1,
+          transition: "opacity 2000ms cubic-bezier(0.2,0.7,0.2,1)",
         }}
       />
     </>
