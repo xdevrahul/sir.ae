@@ -1,5 +1,5 @@
-
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -60,20 +60,20 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#f5f5f3] text-[#20282f]">
-
       {/* PROJECT HERO */}
       <section className="relative flex min-h-[650px] items-end overflow-hidden bg-[#263d50] md:min-h-[780px]">
-
-        <img
+        <Image
           src={project.image}
           alt={project.name}
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#101c26]/90 via-[#101c26]/35 to-black/10" />
 
         <div className="relative mx-auto w-full max-w-[1600px] px-6 pb-16 pt-40 text-white md:px-12 md:pb-20 lg:px-20">
-
           <Link
             href="/projects"
             className="mb-12 inline-flex items-center gap-3 text-[10px] tracking-[2px] text-white/80 transition hover:text-white"
@@ -91,7 +91,6 @@ export default async function ProjectDetailPage({ params }: Props) {
           </h1>
 
           <div className="mt-8 flex flex-wrap items-center gap-6 text-xs text-white/80">
-
             <span className="flex items-center gap-2">
               <MapPin size={15} />
               {project.location}
@@ -103,25 +102,23 @@ export default async function ProjectDetailPage({ params }: Props) {
               <BedDouble size={15} />
               {project.bedrooms} Bedrooms
             </span>
-
           </div>
         </div>
       </section>
 
       {/* PROJECT INFORMATION */}
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
-
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.3fr_0.7fr]">
-
           {/* LEFT DETAILS */}
           <div>
-
             <span className="text-[10px] tracking-[3px] text-[#8295a5]">
               ABOUT THE DEVELOPMENT
             </span>
 
             <h2 className="mt-6 max-w-3xl font-serif text-4xl font-light leading-tight md:text-5xl">
-              Discover a new standard of living.
+              Discover a new standard
+              <br />
+              <span className="italic text-[#8295a5]">of living.</span>
             </h2>
 
             <p className="mt-8 max-w-2xl text-sm leading-8 text-[#737b83]">
@@ -129,14 +126,18 @@ export default async function ProjectDetailPage({ params }: Props) {
             </p>
 
             {/* OVERVIEW */}
-            <div className="mt-14 border-t border-[#d8dcdf] pt-8">
+            <div className="mt-14 border-t border-[#d8dcdf] pt-10">
+              <div className="flex items-end justify-between gap-6">
+                <h3 className="font-serif text-3xl font-light">
+                  Project overview
+                </h3>
 
-              <h3 className="font-serif text-3xl font-light">
-                Project overview
-              </h3>
+                <span className="text-[9px] tracking-[2px] text-[#8295a5]">
+                  KEY DETAILS
+                </span>
+              </div>
 
-              <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
-
+              <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <div className="border-b border-[#d8dcdf] pb-5">
                   <div className="flex items-center gap-3 text-[#8295a5]">
                     <Building2 size={18} />
@@ -145,9 +146,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     </span>
                   </div>
 
-                  <p className="mt-4 text-sm">
-                    {project.propertyType}
-                  </p>
+                  <p className="mt-4 text-sm">{project.propertyType}</p>
                 </div>
 
                 <div className="border-b border-[#d8dcdf] pb-5">
@@ -158,9 +157,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     </span>
                   </div>
 
-                  <p className="mt-4 text-sm">
-                    {project.bedrooms}
-                  </p>
+                  <p className="mt-4 text-sm">{project.bedrooms}</p>
                 </div>
 
                 <div className="border-b border-[#d8dcdf] pb-5">
@@ -171,9 +168,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                     </span>
                   </div>
 
-                  <p className="mt-4 text-sm">
-                    {project.handover}
-                  </p>
+                  <p className="mt-4 text-sm">{project.handover}</p>
                 </div>
 
                 <div className="border-b border-[#d8dcdf] pb-5">
@@ -184,11 +179,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                     </span>
                   </div>
 
-                  <p className="mt-4 text-sm">
-                    {project.location}
-                  </p>
+                  <p className="mt-4 text-sm">{project.location}</p>
                 </div>
-
               </div>
             </div>
           </div>
@@ -196,13 +188,12 @@ export default async function ProjectDetailPage({ params }: Props) {
           {/* RIGHT PRICE CARD */}
           <aside>
             <div className="sticky top-10 border border-[#d8dcdf] bg-white p-7 md:p-9">
-
               <span className="text-[9px] tracking-[2px] text-[#8295a5]">
                 PROPERTY INVESTMENT
               </span>
 
               <p className="mt-5 font-serif text-4xl font-light md:text-5xl">
-                AED {project.price}
+                AED {project.price.replace(/^AED\s*/i, "")}
               </p>
 
               <p className="mt-3 text-xs text-[#8295a5]">
@@ -229,10 +220,13 @@ export default async function ProjectDetailPage({ params }: Props) {
               {/* ENQUIRY BUTTON */}
               <Link
                 href="/#contact"
-                className="mt-8 flex w-full items-center justify-between bg-[#263d50] px-6 py-5 text-[10px] tracking-[2px] text-white transition hover:bg-[#405b72]"
+                className="group mt-8 flex w-full items-center justify-between bg-[#263d50] px-6 py-5 text-[10px] tracking-[2px] text-white transition hover:bg-[#405b72]"
               >
                 ENQUIRE ABOUT THIS PROJECT
-                <ArrowUpRight size={18} />
+                <ArrowUpRight
+                  size={18}
+                  className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
               </Link>
 
               {/* BROCHURE */}
@@ -261,34 +255,36 @@ export default async function ProjectDetailPage({ params }: Props) {
                   <ExternalLink size={13} />
                 </a>
               )}
-
             </div>
           </aside>
-
         </div>
       </section>
 
       {/* BOTTOM CTA */}
-      <section className="bg-[#e8edf0] px-6 py-20 text-center md:px-12">
+      <section className="bg-[#e8edf0] px-6 py-20 text-center md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1500px]">
+          <span className="text-[10px] tracking-[3px] text-[#8295a5]">
+            SIR PROPERTIES · DUBAI
+          </span>
 
-        <span className="text-[10px] tracking-[3px] text-[#8295a5]">
-          SIR PROPERTIES
-        </span>
+          <h2 className="mt-5 font-serif text-4xl font-light md:text-6xl">
+            Explore more
+            <br />
+            <span className="italic text-[#8295a5]">possibilities.</span>
+          </h2>
 
-        <h2 className="mt-5 font-serif text-4xl font-light md:text-6xl">
-          Explore more possibilities.
-        </h2>
-
-        <Link
-          href="/projects"
-          className="mt-8 inline-flex items-center gap-6 border border-[#263d50] px-7 py-5 text-[10px] tracking-[2px] transition hover:bg-[#263d50] hover:text-white"
-        >
-          VIEW ALL PROJECTS
-          <ArrowRight size={17} />
-        </Link>
-
+          <Link
+            href="/projects"
+            className="group mt-10 inline-flex items-center gap-6 border border-[#263d50] px-7 py-5 text-[10px] tracking-[2px] transition hover:bg-[#263d50] hover:text-white"
+          >
+            VIEW ALL PROJECTS
+            <ArrowRight
+              size={17}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+        </div>
       </section>
-
     </main>
   );
 }
