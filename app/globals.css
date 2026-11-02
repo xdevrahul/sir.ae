@@ -1,18 +1,35 @@
 @import "tailwindcss";
 
+/* =========================================
+   SIR.AE - DESIGN SYSTEM (PURPLE THEME)
+========================================= */
+
 @theme inline {
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
 
-  --color-ink: #1f3345;
-  --color-ink-deep: #172a3a;
-  --color-steel: #56697a; /* text-safe contrast on paper/mist */
-  --color-sky: #a8c0d8;
-  --color-mist: #e9edf0;
-  --color-paper: #f3f4f5;
-  --color-body: #4f5a63;
-  --color-line: #d5dade;
+  /* Brand Colors (Purple) */
+  --color-purple-primary: #3b1a5c;
+  --color-purple-dark: #2a0f42;
+  --color-purple-light: #a855f7;
+  --color-purple-soft: #f3e8ff;
+
+  /* Neutral Colors */
+  --color-ink: #2d1b3d;
+  --color-ink-deep: #1f1230;
+  --color-steel: #6b6473;
+  --color-paper: #faf8fc;
+  --color-mist: #f1eef4;
+  --color-body: #5d5666;
+  --color-line: #e6e2ea;
+
+  /* Accent */
+  --color-gold: #c5a46d;
 }
+
+/* =========================================
+   BASE STYLES
+========================================= */
 
 @layer base {
   html {
@@ -22,18 +39,151 @@
 
   body {
     background: var(--color-paper);
-    color: #171a1d;
+    color: #241a30;
+    font-family: var(--font-hanken), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  :focus-visible {
-    outline: 2px solid var(--color-sky);
-    outline-offset: 3px;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-hanken), system-ui, sans-serif;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   button {
     cursor: pointer;
   }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: #a855f7;
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid #a855f7;
+    outline-offset: 3px;
+  }
 }
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f0f7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9a7c9;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* =========================================
+   REUSABLE COMPONENTS
+========================================= */
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .glass-strong {
+    @apply border border-white/20 bg-white/10 backdrop-blur-2xl;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .section-container {
+    @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-label {
+    @apply text-xs font-bold uppercase tracking-[4px] text-purple-600;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight text-[#2d1b3d] sm:text-5xl;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-[#3b1a5c] px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-purple-600;
+  }
+
+  .outline-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-purple-700 px-7 py-4 text-sm font-semibold text-purple-800 transition duration-300 hover:bg-purple-700 hover:text-white;
+  }
+
+  .property-card {
+    @apply overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+
+  .property-image {
+    @apply h-full w-full object-cover transition-transform duration-700 group-hover:scale-110;
+  }
+}
+
+/* =========================================
+   GRADIENT UTILITIES
+========================================= */
+
+@layer utilities {
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-purple-300 via-purple-500 to-violet-700 bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-purple {
+    background: linear-gradient(
+      135deg,
+      #2a0f42 0%,
+      #4c1d7a 55%,
+      #7c3aed 100%
+    );
+  }
+
+  .gold-accent {
+    color: #c5a46d;
+  }
+
+  .luxury-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.75)
+    );
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -43,25 +193,9 @@
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
-  }
-}
-
-@layer components {
-  .glass {
-    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
-  }
-  .glass-strong {
-    @apply border border-white/15 bg-white/10 backdrop-blur-2xl;
-  }
-  .glass-card {
-    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl;
-  }
-  .glow-purple {
-    box-shadow: 0 0 60px -15px rgba(168, 85, 247, 0.5);
-  }
-  .text-gradient-purple {
-    @apply bg-gradient-to-r from-[#c4a7ff] via-[#a855f7] to-[#7c3aed] bg-clip-text text-transparent;
+    animation-iteration-count: 1 !important;
   }
 }

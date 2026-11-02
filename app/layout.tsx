@@ -1,31 +1,54 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { serif, sans } from "@/lib/fonts";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
+/* ---------- Fonts (CSS variables ke through globally available) ---------- */
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
+  display: "swap",
+});
+
+/* ---------- SEO Metadata ---------- */
 export const metadata: Metadata = {
-  title: "SIR Properties | Luxury Real Estate Dubai",
+  title: {
+    default: "SIR.ae — Premium Real Estate",
+    template: "%s | SIR.ae",
+  },
   description:
-    "Discover exclusive luxury properties and premium developments in Dubai with SIR Properties.",
+    "SIR.ae — Curated luxury residences and investment properties in Dubai.",
+  metadataBase: new URL("https://sir.ae"),
   openGraph: {
-    title: "SIR Properties | Luxury Real Estate Dubai",
+    title: "SIR.ae — Premium Real Estate",
     description:
-      "Exclusive residential developments across Dubai's finest locations.",
+      "Curated luxury residences and investment properties in Dubai.",
+    url: "https://sir.ae",
+    siteName: "SIR.ae",
+    locale: "en_AE",
     type: "website",
   },
 };
 
+/* ---------- Root Layout ---------- */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${fraunces.variable} ${hanken.variable}`}>
+      <body className="flex min-h-screen flex-col bg-[#faf8fc] text-[#241a30] antialiased">
         <Navbar />
-        {children}
+        {/* flex-1 taaki footer hamesha bottom par rahe */}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
