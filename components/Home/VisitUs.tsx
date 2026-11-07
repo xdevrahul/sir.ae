@@ -1,6 +1,6 @@
-
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   MapPin,
@@ -107,18 +107,32 @@ export default function VisitUs() {
               </div>
             </div>
 
+            {/* Brand Card — Logo + Name */}
             <div className="mt-12 rounded-2xl bg-[#382052] p-7 text-white">
-              <p className="text-[10px] font-bold uppercase tracking-[3px] text-purple-200">
-                Green Emerald
-              </p>
+              <div className="flex items-center gap-4">
+                <div className="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full ring-1 ring-purple-400/40">
+                  <Image
+                    src="/logo.png"
+                    alt="SIR.ae logo"
+                    width={56}
+                    height={56}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
 
-              <h3 className="mt-3 text-5xl font-bold tracking-[-3px]">
-                GE<span className="text-purple-300">.</span>
-              </h3>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[3px] text-purple-200">
+                    SIR.ae
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-white/90">
+                    Luxury Real Estate
+                  </p>
+                </div>
+              </div>
 
               <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-5">
                 <p className="text-xs text-white/65">
-                  Luxury Real Estate in Dubai
+                  Exclusive Dubai Properties
                 </p>
 
                 <span className="text-xs font-semibold text-purple-200">
@@ -159,7 +173,7 @@ export default function VisitUs() {
 
             <div className="min-h-[350px] flex-1 overflow-hidden rounded-2xl bg-purple-50">
               <iframe
-                title="Green Emerald Dubai Location"
+                title="SIR.ae Dubai Location"
                 src="https://www.google.com/maps?q=Dubai&output=embed"
                 width="100%"
                 height="100%"

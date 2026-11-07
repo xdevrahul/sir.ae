@@ -1,40 +1,38 @@
-
 import Link from "next/link";
+import Image from "next/image";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  Building2,
-  CheckCircle2,
-  Gem,
-  HeartHandshake,
-  Target,
-  Eye,
-  ShieldCheck,
-  Sparkles,
-  MapPin,
-} from "lucide-react";
+  FiArrowRight,
+  FiArrowUpRight,
+  FiTarget,
+  FiEye,
+  FiCheckCircle,
+  FiShield,
+  FiHeart,
+  FiMapPin,
+} from "react-icons/fi";
+import { LuBuilding2, LuGem, LuSparkles } from "react-icons/lu";
 
 const values = [
   {
-    icon: ShieldCheck,
+    icon: FiShield,
     title: "Trust & Transparency",
     description:
       "We believe every property journey should be built on honesty, clear communication and trust.",
   },
   {
-    icon: Gem,
+    icon: LuGem,
     title: "Quality & Excellence",
     description:
       "We focus on exceptional properties, thoughtful service and attention to every detail.",
   },
   {
-    icon: HeartHandshake,
+    icon: FiHeart,
     title: "Client First",
     description:
       "Understanding your needs comes first. We aim to make every interaction personal and meaningful.",
   },
   {
-    icon: Sparkles,
+    icon: LuSparkles,
     title: "Modern Approach",
     description:
       "We bring a fresh perspective to discovering premium real estate opportunities in Dubai.",
@@ -45,15 +43,16 @@ export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-[#faf8fd] text-[#21152f]">
 
-      {/* Hero Section */}
-      <section className="relative mt-6 flex min-h-[430px] items-center justify-center overflow-hidden bg-[#21152f] px-6 py-24 text-center text-white md:min-h-[480px]">
+      {/* ── Hero Section (navbar ke neeche zyada gap) ──────── */}
+      <section className="relative flex min-h-[500px] items-center justify-center overflow-hidden bg-[#21152f] px-6 pb-24 pt-44 text-center text-white md:min-h-[560px] md:pt-48">
 
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90')",
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90"
+          alt="Luxury Dubai property"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
 
         <div className="absolute inset-0 bg-[#21152f]/65" />
@@ -78,30 +77,35 @@ export default function AboutPage() {
 
           <Link
             href="/projects"
-            className="mt-9 inline-flex items-center gap-3 rounded-md bg-purple-600 px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-500"
+            className="group mt-9 inline-flex items-center gap-3 rounded-md bg-purple-600 px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-500"
           >
             Explore Properties
-            <ArrowUpRight size={17} />
+            <FiArrowUpRight
+              size={17}
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
           </Link>
         </div>
 
         <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
       </section>
 
-      {/* Introduction Section */}
+      {/* ── Introduction Section ─────────────────────────── */}
       <section className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-2 lg:px-12 lg:py-28">
 
         <div className="relative">
           <div className="overflow-hidden rounded-2xl">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=90"
               alt="Luxury modern Dubai residence"
+              width={1200}
+              height={800}
               className="h-[420px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[520px]"
             />
           </div>
 
           <div className="absolute -bottom-6 -right-3 rounded-xl bg-[#382052] p-6 text-white shadow-xl sm:-right-6 sm:p-8">
-            <Building2 size={30} className="mb-3 text-purple-200" />
+            <LuBuilding2 size={30} className="mb-3 text-purple-200" />
             <p className="text-2xl font-bold">SIR.ae</p>
             <p className="mt-1 text-xs text-white/65">
               Your Property Journey
@@ -139,15 +143,18 @@ export default function AboutPage() {
 
           <Link
             href="/projects"
-            className="mt-8 inline-flex items-center gap-3 font-bold text-purple-700 transition hover:gap-5"
+            className="group mt-8 inline-flex items-center gap-3 font-bold text-purple-700 transition hover:gap-5"
           >
             Discover Our Properties
-            <ArrowRight size={18} />
+            <FiArrowRight
+              size={18}
+              className="transition-transform group-hover:translate-x-1"
+            />
           </Link>
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* ── Mission & Vision ────────────────────────────── */}
       <section className="bg-[#21152f] px-6 py-20 text-white lg:py-24">
         <div className="mx-auto max-w-7xl">
 
@@ -170,7 +177,7 @@ export default function AboutPage() {
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 sm:p-10">
               <div className="mb-7 grid h-14 w-14 place-items-center rounded-xl bg-purple-500/20 text-purple-300">
-                <Target size={28} />
+                <FiTarget size={28} />
               </div>
 
               <h3 className="text-2xl font-bold">Our Mission</h3>
@@ -184,7 +191,7 @@ export default function AboutPage() {
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-8 sm:p-10">
               <div className="mb-7 grid h-14 w-14 place-items-center rounded-xl bg-purple-500/20 text-purple-300">
-                <Eye size={28} />
+                <FiEye size={28} />
               </div>
 
               <h3 className="text-2xl font-bold">Our Vision</h3>
@@ -200,7 +207,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values */}
+      {/* ── Our Values ──────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-24">
 
         <div className="mb-12 max-w-2xl">
@@ -241,7 +248,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* ── Why Choose Us ───────────────────────────────── */}
       <section className="bg-[#f1ebfa] px-6 py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
 
@@ -269,7 +276,7 @@ export default function AboutPage() {
                 "Connect with our team for property enquiries",
               ].map((point) => (
                 <div key={point} className="flex items-start gap-3">
-                  <CheckCircle2
+                  <FiCheckCircle
                     size={20}
                     className="mt-0.5 shrink-0 text-purple-600"
                   />
@@ -282,23 +289,28 @@ export default function AboutPage() {
 
             <Link
               href="/projects"
-              className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#382052] px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-600"
+              className="group mt-9 inline-flex items-center gap-3 rounded-md bg-[#382052] px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-600"
             >
               Browse Developments
-              <ArrowUpRight size={17} />
+              <FiArrowUpRight
+                size={17}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </Link>
           </div>
 
           <div className="relative">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=90"
               alt="Luxury contemporary property interior"
+              width={1200}
+              height={800}
               className="h-[430px] w-full rounded-2xl object-cover shadow-xl sm:h-[540px]"
             />
 
             <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/20 bg-[#21152f]/85 p-6 text-white backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-8">
               <div className="flex items-center gap-3">
-                <MapPin className="text-purple-300" size={24} />
+                <FiMapPin className="shrink-0 text-purple-300" size={24} />
                 <div>
                   <p className="text-xs text-white/60">
                     Explore Our Collection
@@ -314,11 +326,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* ── Final CTA ───────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[#21152f] px-6 py-20 text-center text-white lg:py-24">
 
-        <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-purple-600/20 blur-[100px]" />
-        <div className="absolute -bottom-40 -right-20 h-96 w-96 rounded-full bg-purple-500/20 blur-[100px]" />
+        <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-purple-600/20 blur-[100px]" />
+        <div className="pointer-events-none absolute -bottom-40 -right-20 h-96 w-96 rounded-full bg-purple-500/20 blur-[100px]" />
 
         <div className="relative z-10 mx-auto max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[4px] text-purple-300">
@@ -340,18 +352,24 @@ export default function AboutPage() {
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/projects"
-              className="inline-flex items-center justify-center gap-3 rounded-md bg-purple-600 px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-500"
+              className="group inline-flex items-center justify-center gap-3 rounded-md bg-purple-600 px-7 py-4 text-sm font-bold text-white transition hover:bg-purple-500"
             >
               Explore Properties
-              <ArrowUpRight size={17} />
+              <FiArrowUpRight
+                size={17}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </Link>
 
             <Link
               href="/#contact"
-              className="inline-flex items-center justify-center gap-3 rounded-md border border-white/25 px-7 py-4 text-sm font-bold text-white transition hover:bg-white hover:text-[#21152f]"
+              className="group inline-flex items-center justify-center gap-3 rounded-md border border-white/25 px-7 py-4 text-sm font-bold text-white transition hover:bg-white hover:text-[#21152f]"
             >
               Contact Us
-              <ArrowRight size={17} />
+              <FiArrowRight
+                size={17}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </div>
         </div>

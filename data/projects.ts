@@ -450,4 +450,76 @@ export const projects: Project[] = [
     description:
       "Explore Prestige One Residences by Prestige One Developments, apartments and penthouses in Maritime City, Dubai.",
   },
+
+  // ─── New Additions (04-11-2026) ────────────────────────────────
+  {
+    slug: "fleurs-de-jardin",
+    name: "Fleurs de Jardin",
+    location: "MBR City, Dubai",
+    developer: "AMIS Development",
+    price: "From AED 26M",
+    bedrooms: "5–6",
+    propertyType: "Villas",
+    handover: "Q4 2028",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600",
+    brochure: "https://www.amisdevelopment.com/fleurs-de-jardin/",
+    officialWebsite: "https://www.amisdevelopment.com/",
+    description:
+      "Discover Fleurs de Jardin by AMIS Development, an exclusive collection of 5–6 bedroom villas in MBR City, Dubai.",
+  },
+
+  {
+    slug: "ellington-ocean-house",
+    name: "Ellington Ocean House",
+    location: "Palm Jumeirah, Dubai",
+    developer: "Ellington Properties",
+    price: "From AED 49M",
+    bedrooms: "5",
+    propertyType: "Duplex, Penthouse",
+    handover: "Q4 2026",
+    image:
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600",
+    brochure:
+      "https://new-projects-media.propertyfinder.com/project/e7fcb0bd-650f-4c7e-a260-a36ad6a2c668/brochure/application/Drbb8UKYCdpDWBzFaiMECMoDP_LKFm9g24oXBhtT4t0=/original.pdf",
+    officialWebsite: "https://ellingtonproperties.ae/",
+    description:
+      "Explore Ellington Ocean House by Ellington Properties, ultra-luxury 5-bedroom duplexes and penthouses on Palm Jumeirah.",
+  },
+
+  {
+    slug: "palm-central-private-residences-frond-m",
+    name: "Palm Central Private Residences Frond M",
+    location: "Palm Jumeirah, Dubai",
+    developer: "Nakheel",
+    price: "From AED 32M",
+    bedrooms: "5",
+    propertyType: "Penthouse",
+    handover: "Q3 2029",
+    image:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600",
+    brochure:
+      "https://new-projects-media.propertyfinder.com/project/1ae6f5f7-8abc-4907-b6d0-e8f38ce7ab27/brochure/application/4Y3dBVMUFNSuep_Ih_rBW4s7tundGlXpnHmu-j5Gzfc=/original.pdf",
+    officialWebsite: "https://www.nakheel.com/",
+    description:
+      "Discover Palm Central Private Residences Frond M by Nakheel, exclusive 5-bedroom penthouses on Palm Jumeirah.",
+  },
+
+  {
+    slug: "edra-villas",
+    name: "EDRA Villas",
+    location: "Eden Hills, Dubai",
+    developer: "H&H Development",
+    price: "From AED 80M",
+    bedrooms: "6",
+    propertyType: "Luxury Villas",
+    handover: "Q2 2028",
+    image:
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1600",
+    brochure:
+      "https://new-projects-media.propertyfinder.com/project/ac447121-4f8e-421f-8164-7b527c3d591f/brochure/application/d7kPD9i_vU9EoQpmlMbdnTp260zDgDiG2wQRHg2jFnc=/original.pdf",
+    officialWebsite: "https://www.hh-dev.com/",
+    description:
+      "Explore EDRA Villas by H&H Development, ultra-prime 6-bedroom luxury villas in Eden Hills, Dubai.",
+  },
 ];
